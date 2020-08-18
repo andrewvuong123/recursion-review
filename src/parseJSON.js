@@ -12,11 +12,11 @@ var parseJSON = function(json) {
     return parseStr(json);
   } else if (!isNaN(json)) {
     return Number(json);
-  } else if (json[0] === 'null') {
+  } else if (json === 'null') {
     return null;
-  } else if (json[0] === 'true') {
+  } else if (json === 'true') {
     return true;
-  } else if (json[0] === 'false') {
+  } else if (json === 'false') {
     return false;
   }
 };
