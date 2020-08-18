@@ -4,4 +4,41 @@
 // but you're not, so you'll write it from scratch:
 var parseJSON = function(json) {
   // your code goes here
+  if (json[0] === '{') {
+    return parseObj(json);
+  } else if (json[0] === '[') {
+    return parseArray(json);
+  } else if (json[0] === '"') {
+    return parseStr(json);
+  } else if (!isNaN(json)) {
+    return Number(json);
+  } else if (json[0] === 'null') {
+    return null;
+  } else if (json[0] === 'true') {
+    return true;
+  } else if (json[0] === 'false') {
+    return false;
+  }
+};
+
+var parseArray = function(arr) {
+  var result = [];
+  if (arr === '[]') {
+    return [];
+  }
+  let array = arr.slice(1, arr.length - 1).split(',');
+  for (let i = 0; i < array.length; i++) {
+    result.push(parseJSON(array[i]));
+  }
+  return result;
+};
+
+var parseObj = function(obj) {
+  if (obj === '{}') {
+    return {};
+  }
+};
+
+var parseStr = function(str) {
+  return str.slice(1, str.length - 1);
 };
